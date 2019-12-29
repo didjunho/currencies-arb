@@ -13,7 +13,7 @@ loopN=0
 
 while true
 do
-    python3 get.py 
+    python3 driver.py 
     python3 clearMem.py
     sleep 5m
 done
