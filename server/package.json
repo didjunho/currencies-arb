@@ -21,7 +21,6 @@
   },
   "dependencies": {
     "isomorphic-fetch": "==2.2.1",
-    "javascript-obfuscator": "^0.19.4",
     "jsonlint": "^1.6.2",
     "moment": "==2.18.1",
     "prop-types": "==15.6.0",
