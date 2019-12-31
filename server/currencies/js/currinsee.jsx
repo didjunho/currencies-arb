@@ -12,7 +12,7 @@ class Currency extends React.Component {
 
   componentDidMount() {
     this.handleRequest(this.props.url, 'GET');
-    setInterval(this.handleRequest, 5000);
+    setInterval(() => this.handleRequest(this.props.url, 'GET'), 5000);
   }
 
   handleRequest(url, methodType) {
