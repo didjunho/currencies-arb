@@ -1,0 +1,14 @@
+#!/bin/bash
+# test
+
+# Stop on errors
+# See https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
+set -Eeuo pipefail
+set -x
+
+# code style
+pycodestyle currencies
+pydocstyle currencies
+
+# pylint
+pylint --reports=n --disable=cyclic-import --disable=no-member --disable=no-value-for-parameter currencies
