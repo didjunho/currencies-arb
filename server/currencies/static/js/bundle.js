@@ -10260,19 +10260,23 @@ var Currency = function (_React$Component) {
   _createClass(Currency, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
+      var _this2 = this;
+
       this.handleRequest(this.props.url, 'GET');
-      setInterval(this.handleRequest, 5000);
+      setInterval(function () {
+        return _this2.handleRequest(_this2.props.url, 'GET');
+      }, 5000);
     }
   }, {
     key: 'handleRequest',
     value: function handleRequest(url, methodType) {
-      var _this2 = this;
+      var _this3 = this;
 
       fetch(url, { method: methodType, credentials: 'same-origin' }).then(function (response) {
         if (!response.ok) throw Error(response.statusText);
         return response.json();
       }).then(function (data) {
-        _this2.setState({
+        _this3.setState({
           info: data
         });
       }).catch(function (error) {
