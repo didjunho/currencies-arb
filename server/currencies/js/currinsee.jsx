@@ -1,6 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { array } from 'prop-types';
 
+const CURRENCIES = ['CAD', 'HKD', 'ISK', 'PHP', 'DKK', 'HUF', 'CZK', 'GBP', 'RON', 'SEK', 'IDR',
+  'INR', 'BRL', 'RUB', 'HRK', 'JPY', 'THB', 'CHF', 'EUR', 'MYR', 'BGN', 'TRY', 'CNY', 'NOK',
+  'NZD', 'ZAR', 'USD', 'MXN', 'SGD', 'AUD', 'ILS', 'KRW', 'PLN'];
+CURRENCIES.sort();
 
 class Currency extends React.Component {
   constructor(props) {
@@ -31,19 +35,40 @@ class Currency extends React.Component {
 
   render() {
     const infoList = [];
-    Object.entries(this.state.info).forEach(([key, value]) => {
-      console.log(key, value);
-      infoList.push(
-        React.createElement('div', { className: 'info' },
-          <div className="infoIn">
-            {key} : {value}
-          </div>,
-        ),
+    const columns = [];
+    let lastUpdated = '';
+    columns.push(<th key="title" />);
+    CURRENCIES.forEach(item =>
+      columns.push(React.createElement('th', { key: item },
+        item,
+      )),
+    );
+    infoList.push(<tr key="top-row">{columns}</tr>);
+    Object.entries(this.state.info).forEach(([key1, value]) => {
+      if (key1 === 'updated') {
+        lastUpdated = value.time;
+        return;
+      }
+      const children = [];
+      Object.entries(value).forEach(([key2, value2]) => {
+        children.push(React.createElement('th', { key: key2, style: { fontWeight: 'normal' } },
+          parseFloat(value2.toFixed(6)),
+        ));
+      });
+      const row = React.createElement('tr', { className: 'info', key: key1 },
+        <th>{key1}</th>,
+        children,
       );
+      infoList.push(row);
     });
     return (
       <div>
-        {infoList}
+        <h2>Last Updated: {lastUpdated}</h2>
+        <table>
+          <tbody>
+            {infoList}
+          </tbody>
+        </table>
       </div>
     );
   }
