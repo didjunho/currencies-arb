@@ -10261,7 +10261,7 @@ var Currency = function (_React$Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       this.handleRequest(this.props.url, 'GET');
-      setInterval(this.getData, 5000);
+      setInterval(this.handleRequest, 5000);
     }
   }, {
     key: 'handleRequest',
