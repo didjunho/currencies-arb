@@ -1,4 +1,4 @@
-/data
+/data/*
 /server/env/
 /server
 bundle.js
